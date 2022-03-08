@@ -1,17 +1,54 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <bar-chart v-on:refresh:chart="refreshChart" :propsData="chartDataSet"></bar-chart>
+    <line-chart></line-chart>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import BarChart from './components/BarChart.vue'
+import LineChart from './components/LineChart.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    BarChart,
+    LineChart
+  },  
+  data(){
+    return{
+      chartDataSet:[{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }],
+    }
+  },
+  methods:{
+    refreshChart(){
+      this.chartDataSet = [11,11,23,12] //emit 예시
+    }
+  },
+  created(){
+    // axios.get('charts/line1')// 이런식으로 데이터를받아오면 이런식으로 가령 app.vue 상위폴더에서 데이터 처리를하고 하위 컴포넌트에 내려보내준다
+    // .then(res => this.chartDataSet = res.data)
+    // .catch(err => console.log(err))
   }
 }
 </script>
@@ -24,5 +61,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  width:70%;
 }
 </style>
