@@ -7,15 +7,16 @@
 
 <script>
 export default {
+props:['labeSet','dataSet'],
 mounted(){
     const ctx2 = this.$refs.linechart.getContext('2d'); 
     const linechart = new this.$_Chart(ctx2, {
         type: 'line',
         data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: this.labeSet,
             datasets: [{
                 label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                data: this.dataSet,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',

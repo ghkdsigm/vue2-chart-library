@@ -7,7 +7,10 @@ export default{
 
         // Barchart.vue
         this.$_Chart
-        
+
+        // Barchart.vue
+        this.$_Chart
+
         // Linechart.vue
         this.$_Chart
     }
